@@ -1,0 +1,20 @@
+{
+    "files.exclude": {
+        "**/venv": true,
+        "**/__pycache__": true,
+        "**/migrations": true,
+        "**/__init__.py": true,
+        "**/admin.py": true,
+        "**/apps.py": true,
+        "**/tests.py": true,
+        "**/import_view.py": true,
+        "**/auto_import.py": true,
+        "**/db.sqlite3": true,
+        "**/manage.py": true,
+        "**/.env": true,
+        "**/asgi.py": true,
+        "**/wsgi.py": true,
+        "**/README.md": true,
+        "**/system.py": true,
+    }
+}
