@@ -1,0 +1,9 @@
+django
+djangorestframework
+django-redis
+PyJWT
+rsa
+bcrypt
+pytimeparse
+mysqlclient
+django-cors-headers

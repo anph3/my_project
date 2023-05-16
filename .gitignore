@@ -1,0 +1,6 @@
+**/venv
+**/__pycache__
+**/migrations
+db.sqlite3
+my_app/import_view.py
+my_app/views/auto_import.py
