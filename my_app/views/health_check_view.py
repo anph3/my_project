@@ -39,3 +39,6 @@ class HealthView(ViewSet):
                 'cache': validate_redis.data
             })
         return response_h.response_data()
+    
+    def test(self, request):
+        return response_h.response_data()

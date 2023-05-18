@@ -43,7 +43,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    # 'middleware.auth.AuthUserMiddleware',
+    'middleware.login_middleware.AuthUserMiddleware',
 ]
 
 NAME = 'auth' 
@@ -54,4 +54,4 @@ PORT = '3306'
 
 REDIS_HOST = '127.0.0.1'
 REDIS_PORT = '6379'
-REDIS_DB = '1'
+REDIS_DB = '15'
