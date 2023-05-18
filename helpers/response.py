@@ -39,4 +39,10 @@ def message_errors(data={}):
     for key, value in data.items():
         error_message += str(key) + ' ' + str(list(value)[0]) + cr.SEPARATE_THE_ERROR
     return str(error_message)
+
+def custom404(request, exception=None):
+    return JsonResponse({
+        cr.ResponseKey.STATUS_CODE.value: cr.STATUS.PAGE_NOT_FOUND.value,
+        cr.ResponseKey.MESSAGE.value: cr.ERROR.PAGE_NOT_FOUND.value
+    })
     

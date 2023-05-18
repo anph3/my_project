@@ -1,6 +1,9 @@
 from django.urls import path, include
 import os
 
+from helpers import response as rh
+
+
 if os.getenv('APP_ENV', 'local') != 'local':
     from helpers.system import import_configs
     import_configs('view','v' ,'my_app')
@@ -29,3 +32,5 @@ for item in all_url:
 urlpatterns = [
     path('my-project/', include(url_item))
 ]
+
+handler404 = rh.custom404
