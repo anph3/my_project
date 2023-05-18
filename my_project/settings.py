@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+import importlib
+sys_conf = importlib.import_module("enviroments." + os.getenv('APP_ENV', 'local'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-l@q$eiby-oc$pl1@3x*ll^6e!&kb+4!ee7$r$ug3renemj1)1*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = sys_conf.DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,50 +43,9 @@ INSTALLED_APPS = [
     'my_app'
 ]
 
-# date format
+REST_FRAMEWORK = sys_conf.REST_FRAMEWORK
 
-DATE_FORMAT = '%d-%m-%Y'
-
-TIME_FORMAT = '%H:%M:%S'
-
-DATETIME_FORMAT = '%d-%m-%Y %H:%M:%S'
-
-DATE_INPUT_FORMATS = [
-    '%d/%m/%Y',
-    '%Y-%m-%d',
-    '%d-%m-%Y',
-    '%Y/%m/%d'
-]
-
-DATETIME_INPUT_FORMATS = [
-    '%Y-%m-%d %H:%M:%S',
-    '%Y/%m/%d %H:%M:%S',
-    '%d-%m-%Y %H:%M:%S',
-    '%d/%m/%Y %H:%M:%S'
-] + DATE_INPUT_FORMATS
-
-REST_FRAMEWORK = {
-    'DATE_FORMAT': DATE_FORMAT,
-    'DATETIME_FORMAT': DATETIME_FORMAT,
-    'DATE_INPUT_FORMATS': DATE_INPUT_FORMATS,
-    'DATETIME_INPUT_FORMATS': DATETIME_INPUT_FORMATS,
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    ],
-    'DEFAULT_PARSER_CLASSES': [
-        'rest_framework.parsers.JSONParser',
-        'rest_framework.parsers.MultiPartParser',
-        'rest_framework.parsers.FormParser'
-    ]
-
-}
-
-MIDDLEWARE = [
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    # 'middleware.auth.AuthUserMiddleware',
-]
+MIDDLEWARE = sys_conf.MIDDLEWARE
 
 ROOT_URLCONF = 'my_app.urls'
 
@@ -113,17 +74,17 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': os.getenv('MYSQL_DATABASE_DB', 'auth'),
-        'USER': os.getenv('MYSQL_DATABASE_USER', 'root'),
-        'PASSWORD': os.getenv('MYSQL_DATABASE_PASSWORD', ''),
-        'HOST': os.getenv('MYSQL_DATABASE_HOST', 'localhost'),
-        'PORT': os.getenv('MYSQL_DATABASE_PORT', '3306'),
+        'NAME': os.getenv('MYSQL_DATABASE_DB', sys_conf.NAME),
+        'USER': os.getenv('MYSQL_DATABASE_USER', sys_conf.USER),
+        'PASSWORD': os.getenv('MYSQL_DATABASE_PASSWORD', sys_conf.PASSWORD),
+        'HOST': os.getenv('MYSQL_DATABASE_HOST', sys_conf.HOST),
+        'PORT': os.getenv('MYSQL_DATABASE_PORT', sys_conf.PORT),
     }
 }
 
-REDIS_HOST = str(os.getenv("CACHE_DB_HOST", '127.0.0.1'))
-REDIS_PORT = str(os.getenv("CACHE_DB_POST", '6379'))
-REDIS_DB = str(os.getenv("CACHE_DB_NAME", '1'))
+REDIS_HOST = str(os.getenv("CACHE_DB_HOST", sys_conf.REDIS_HOST))
+REDIS_PORT = str(os.getenv("CACHE_DB_POST", sys_conf.REDIS_PORT))
+REDIS_DB = str(os.getenv("CACHE_DB_NAME", sys_conf.REDIS_DB))
 
 REDIS_CONNECTION_CUSTOM = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/' + REDIS_DB
 
