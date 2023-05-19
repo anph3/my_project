@@ -7,3 +7,4 @@ bcrypt
 pytimeparse
 mysqlclient
 django-cors-headers
+celery

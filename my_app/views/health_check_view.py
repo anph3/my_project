@@ -1,5 +1,7 @@
 from .views import *
 
+from console import job
+
 class HealthView(ViewSet):
     def health(self, request):
         database = redis = False
@@ -38,4 +40,9 @@ class HealthView(ViewSet):
                 'database': validate_database.data,
                 'cache': validate_redis.data
             })
+        return response_h.response_data()
+    
+    def test(self, request):
+        # job.print_jobs.apply_async(kwargs={"data":serializer.data})
+        job.print_jobs.apply_async()
         return response_h.response_data()
