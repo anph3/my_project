@@ -101,6 +101,8 @@ SESSION_CACHE_ALIAS = 'default'
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
+CELERY_BROKER_URL = REDIS_CONNECTION_CUSTOM
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
