@@ -1,6 +1,9 @@
 from django.urls import path, include
 import os
 
+from helpers import response as rh
+
+
 if os.getenv('APP_ENV', 'local') != 'local':
     from helpers.system import import_configs
     import_configs('view','v' ,'my_app')
@@ -17,8 +20,10 @@ else:
 all_url = {
     'url_health':[
         path('health', health_check_view_v.HealthView.as_view({'get':'health'}), name='health'),
-        path('test', health_check_view_v.HealthView.as_view({'get':'test'}), name='test'),
     ],
+    'url_test':[
+        path('test', health_check_view_v.HealthView.as_view({'get':'test'}), name='test'),
+    ]
 }
 
 url_item = []
@@ -29,3 +34,5 @@ for item in all_url:
 urlpatterns = [
     path('my-project/', include(url_item))
 ]
+
+handler404 = rh.custom404
