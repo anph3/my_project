@@ -10,7 +10,7 @@
         "**/import_view.py": true,
         "**/auto_import.py": true,
         "**/db.sqlite3": true,
-        "**/manage.py": true,
+        // "**/manage.py": true,
         "**/.env": true,
         "**/asgi.py": true,
         "**/wsgi.py": true,
