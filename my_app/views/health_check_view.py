@@ -26,10 +26,10 @@ class HealthView(ViewSet):
             cache_client = cache_backend.client.get_client(write=True)
             cache_info = cache_client.connection_pool.connection_kwargs
             
-            validate_database = health_va.DatabaseInfo(data=database_info)
+            validate_database = health_serializer_s.DatabaseInfo(data=database_info)
             validate_database.is_valid()
             
-            validate_redis = health_va.RedisInfo(data=cache_info)
+            validate_redis = health_serializer_s.RedisInfo(data=cache_info)
             validate_redis.is_valid()
             
             return response_h.response_data({
