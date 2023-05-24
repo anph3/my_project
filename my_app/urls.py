@@ -22,6 +22,9 @@ all_url = {
         path('health', health_check_view_v.HealthView.as_view({'get':'health'}), name='health'),
         path('test', health_check_view_v.HealthView.as_view({'get':'test'}), name='test'),
     ],
+    'url_user':[
+        path('all-user', user_view_v.UserView.as_view({'get':'all_user'}), name='all_user'),
+    ]
 }
 
 url_item = []

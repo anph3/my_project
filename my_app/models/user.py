@@ -1,4 +1,6 @@
 from django.db import models
+from ..reponsitory.user_manage import UserManager
+
 
 class User(models.Model):
     class Meta:
@@ -10,3 +12,5 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField()
+    
+    objects = UserManager()
