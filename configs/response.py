@@ -11,6 +11,7 @@ class STATUS(enum.Enum):
     SUCCESS = 1
     INPUT_INVALID = 4
     PAGE_NOT_FOUND = 404
+    DATABASE_CONNECT_FAILD = 404
     
 class SUCCESS(enum.Enum):
     SUCCESS = 'Success'
